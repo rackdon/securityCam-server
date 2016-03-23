@@ -15,6 +15,7 @@ securityCam-server is a [nodeJS](https://nodejs.org/api/) server, built on top  
 - install
 
   ```
+  npm install
   npm run installScript
   ```
 
