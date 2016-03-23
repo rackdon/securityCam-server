@@ -1,0 +1,26 @@
+{
+  "name": "securitycam-server",
+  "description": "Node server for notifications and database management of SecurityCam app",
+  "version": "1.0.0",
+  "license": "ISC",
+  "keywords": [
+    "security",
+    "cam"
+  ],
+  "author": "Ricardo Martínez <@rackdon>",
+  "homepage": "https://github.com/rackdon/securityCam-server#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rackdon/securityCam-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rackdon/securityCam-server/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "standard": "^6.0.8"
+  },
+  "devDependencies": {}
+}
