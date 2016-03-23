@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "license": "ISC",
   "keywords": [
-    "security",
-    "cam"
+    "security cam"
   ],
   "author": "Ricardo Martínez <@rackdon>",
   "homepage": "https://github.com/rackdon/securityCam-server#readme",
@@ -17,7 +16,8 @@
     "url": "https://github.com/rackdon/securityCam-server/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installScript": "./conf/installation.sh"
   },
   "dependencies": {
     "body-parser": "^1.15.0",
