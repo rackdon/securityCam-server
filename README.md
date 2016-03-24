@@ -12,6 +12,21 @@ securityCam-server is a [nodeJS](https://nodejs.org/api/) server, built on top  
 
 ## QuickStart
 
+
+- Install
+
+  ```
+  npm install
+  npm run installScript
+  ```
+
+- Run server
+
+  ```
+  not implemented yet
+  ```
+
+
 Node 4.2.1 or later is needed. You can install it following the next steps
 
   ```
@@ -21,17 +36,4 @@ Node 4.2.1 or later is needed. You can install it following the next steps
   node -v
 
   # Unstable version is available at node_latest_unstable_armhf.deb
-  ```
-
-- install
-
-  ```
-  npm install
-  npm run installScript
-  ```
-
-- run server
-
-  ```
-  not implemented yet
   ```
