@@ -12,6 +12,17 @@ securityCam-server is a [nodeJS](https://nodejs.org/api/) server, built on top  
 
 ## QuickStart
 
+Node 4.2.1 or later is needed. You can install it following the next steps
+
+  ```
+  wget http://node-arm.herokuapp.com/node_latest_armhf.deb
+  sudo dpkg -i node_latest_armhf.deb
+  # Check installation
+  node -v
+
+  # Unstable version is available at node_latest_unstable_armhf.deb
+  ```
+
 - install
 
   ```
