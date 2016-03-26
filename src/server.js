@@ -23,11 +23,11 @@ var callback = function (data) {
 }
 
 fs.watch('/home/pi/motion/captures', function (eventType, file) {
-  //fs.exists(file, function (exists) {
-    //if (exists) {
-      //callback('Change')
-    //}
-  //})
+  // fs.exists(file, function (exists) {
+  // if (exists) {
+  // callback('Change')
+  // }
+  // })
   callback('Change')
   console.log('A file has been changed')
   console.dir(eventType)
