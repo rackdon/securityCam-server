@@ -7,6 +7,27 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('./package.json'),
 
+    shell: {
+        runNodeserver: {
+          command: 'node src/server.js'
+        },
+        runMongoDBserver: {
+          command: 'mongod'
+        },
+        runMotion: {
+          command: 'motion'
+        }
+    },
+
+    concurrent: {
+        target1: {
+            tasks: ['shell:runMongoDBserver', 'shell:runNodeserver', 'shell:runMotion'],
+            options: {
+                logConcurrentOutput: true
+            }
+        }
+    },
+
     standard: {
       lint: {
         src: [
@@ -30,6 +51,11 @@ module.exports = function (grunt) {
   ])
 
   grunt.registerTask('test', [
-    'format'
+    'format',
+    'start'
+  ])
+
+  grunt.registerTask('start', [
+    'concurrent:target1'
   ])
 }
