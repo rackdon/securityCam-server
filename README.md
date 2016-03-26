@@ -24,7 +24,7 @@ securityCam-server is a [nodeJS](https://nodejs.org/api/) server, built on top  
 - Run server
 
   ```
-  not implemented yet
+  grunt start
   ```
 
 
