@@ -51,8 +51,7 @@ module.exports = function (grunt) {
   ])
 
   grunt.registerTask('test', [
-    'format',
-    'start'
+    'format'
   ])
 
   grunt.registerTask('start', [
