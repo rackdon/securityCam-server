@@ -1,5 +1,16 @@
 language: node_js
 node_js:
   - 4.2
-before_script:
+
+addons:
+    code_climate:
+        repo_token: 362d50c7bfeb2bab39fc78799f0fa8cf52059706a91ed75df37944766886df03
+before_install:
   - npm install grunt-cli -g
+  - npm install -g mocha
+  - npm install -g istanbul
+  - npm install -g codeclimate-test-reporter
+
+after_script:
+  - istanbul cover node_modules/.bin/_mocha -- -R dot
+  - codeclimate-test-reporter < ./coverage/lcov.info

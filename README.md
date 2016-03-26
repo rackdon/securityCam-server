@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/rackdon/securityCam-server.svg?branch=master)](https://travis-ci.org/rackdon/securityCam-server)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Code Climate](https://codeclimate.com/github/rackdon/securityCam-server/badges/gpa.svg)](https://codeclimate.com/github/rackdon/securityCam-server)
+[![Test Coverage](https://codeclimate.com/github/rackdon/securityCam-server/badges/coverage.svg)](https://codeclimate.com/github/rackdon/securityCam-server/coverage)
 
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)

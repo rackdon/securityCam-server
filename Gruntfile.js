@@ -43,7 +43,17 @@ module.exports = function (grunt) {
           './{src,test}/**/*.js'
         ]
       }
-    }
+    },
+
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          require: 'test/helpers/chai.js'
+        },
+        src: ['test/unit/test-suite.js', 'test/integration/test-suite.js']
+      }
+},
   })
 
   grunt.registerTask('format', [
@@ -51,7 +61,8 @@ module.exports = function (grunt) {
   ])
 
   grunt.registerTask('test', [
-    'format'
+    'format',
+    'mochaTest:test'
   ])
 
   grunt.registerTask('start', [
