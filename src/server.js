@@ -1,35 +1,30 @@
-var net = require('net')
-var fs = require('fs')
-var clients = []
-var host = '0.0.0.0'
-var port = 8082
-var server = net.createServer(function (socket) {
-  socket.on('data', callback)
-  socket.on('end', function () {
-    console.dir('End callback')
-    clients.splice(clients.indexOf(socket), 1)
-  })
-  clients.push(socket)
+var express = require('express')
+var bodyParser = require('body-parser')
+var glob = require('glob')
+
+// Set up the express server
+var app = express()
+
+// parse application/json
+app.use(bodyParser.json())
+
+// Routes initialization
+app.get('/', function (req, res) {
+  res.send('Security Cam express server')
 })
 
-server.listen(port, host)
-console.log('server started')
+// find all express route files
+var routes = glob.sync('src/routes/**/*.js')
 
-var callback = function (data) {
-  for (var i = 0; i < clients.length; i++) {
-    var socket = clients[i]
-    socket.write(data.toString() + '\n')
-  }
+function addToServer (path) {
+  console.log(path + ' added to express')
+  require(path)(app)
 }
 
-fs.watch('/home/pi/motion/captures', function (eventType, file) {
-  // fs.exists(file, function (exists) {
-  // if (exists) {
-  // callback('Change')
-  // }
-  // })
-  callback('Change')
-  console.log('A file has been changed')
-  console.dir(eventType)
-  console.dir(file)
+routes.forEach(addToServer)
+
+app.listen(8082, function () {
+  console.log('Node server running on http://localhost:8082')
 })
+
+module.exports = app

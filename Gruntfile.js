@@ -49,7 +49,7 @@ module.exports = function (grunt) {
       test: {
         options: {
           reporter: 'spec',
-          require: 'test/helpers/chai.js'
+          require: 'test/helpers/globals.js'
         },
         src: ['test/unit/test-suite.js', 'test/integration/test-suite.js']
       }
