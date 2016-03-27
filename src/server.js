@@ -14,14 +14,17 @@ app.get('/', function (req, res) {
 })
 
 // find all express route files
-var routes = glob.sync('src/routes/**/*.js')
+var routes = glob.sync('src/{dao, routes}/**/*.js')
 
 function addToServer (path) {
-  console.log(path + ' added to express')
   require(path)(app)
+  console.log(path + ' added to express')
 }
 
-routes.forEach(addToServer)
+routes.forEach(function (route) {
+  route = route.replace('src', '.')
+  addToServer(route)
+})
 
 app.listen(8082, function () {
   console.log('Node server running on http://localhost:8082')
