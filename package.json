@@ -32,7 +32,7 @@
     ]
   },
   "scripts": {
-    "installScript": "./conf/installation.sh",
+    "installScript": "./config/installation.sh",
     "coverage": "istanbul cover node_modules/.bin/_mocha -- -R spec",
     "test": "grunt test",
     "clean": "rm -rf node_modules"
