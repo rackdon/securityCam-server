@@ -43,7 +43,8 @@
     "glob": "^7.0.3",
     "grunt-concurrent": "^2.2.1",
     "grunt-shell": "^1.2.1",
-    "mongoose": "^4.4.9"
+    "mongoose": "^4.4.9",
+    "socket.io": "^1.4.5"
   },
   "devDependencies": {
     "chai": "^3.5.0",

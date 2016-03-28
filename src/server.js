@@ -1,9 +1,8 @@
-var express = require('express')
+var app = require('express')()
+var http = require('http').Server(app)
+var io = require('socket.io')(http)
 var bodyParser = require('body-parser')
 var glob = require('glob')
-
-// Set up the express server
-var app = express()
 
 // parse application/json
 app.use(bodyParser.json())
@@ -14,10 +13,14 @@ app.get('/', function (req, res) {
 })
 
 // find all express route files
-var routes = glob.sync('src/{dao, routes}/**/*.js')
+var routes = glob.sync('src/{dao,socket,routes}/**/*.js')
 
 function addToServer (path) {
-  require(path)(app)
+  if (path.indexOf('socket') !== -1) {
+    require(path)(io)
+  } else {
+    require(path)(app)
+  }
   console.log(path + ' added to express')
 }
 
@@ -26,7 +29,7 @@ routes.forEach(function (route) {
   addToServer(route)
 })
 
-app.listen(8082, function () {
+http.listen(8082, function () {
   console.log('Node server running on http://localhost:8082')
 })
 
