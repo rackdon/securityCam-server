@@ -28,7 +28,8 @@
       "after",
       "afterEach",
       "request",
-      "serverTest"
+      "serverTest",
+      "sinon"
     ]
   },
   "scripts": {
@@ -39,11 +40,13 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
+    "chokidar": "^1.4.3",
     "express": "^4.13.4",
     "glob": "^7.0.3",
     "grunt-concurrent": "^2.2.1",
     "grunt-shell": "^1.2.1",
     "mongoose": "^4.4.9",
+    "mz": "^2.4.0",
     "socket.io": "^1.4.5"
   },
   "devDependencies": {
@@ -57,6 +60,7 @@
     "istanbul": "^0.4.2",
     "load-grunt-tasks": "^3.4.1",
     "mocha-lcov-reporter": "^1.2.0",
+    "sinon": "^1.17.3",
     "socket.io-client": "^1.4.5",
     "supertest": "^1.2.0",
     "test-console": "^1.0.0",
