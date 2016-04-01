@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 
     shell: {
         runNodeserver: {
-          command: 'node src/server.js'
+          command: 'NODE_ENV=production node src/server.js'
         },
         runMongoDBserver: {
           command: 'mongod'
@@ -49,6 +49,7 @@ module.exports = function (grunt) {
       test: {
         options: {
           reporter: 'spec',
+          timeout: 5000,
           require: 'test/helpers/globals.js'
         },
         src: ['test/unit/test-suite.js', 'test/integration/test-suite.js']

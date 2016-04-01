@@ -4,6 +4,10 @@ var io = require('socket.io')(http)
 var bodyParser = require('body-parser')
 var glob = require('glob')
 
+// Set Environment variables
+var env = process.env.NODE_ENV || 'development'
+app.set('configuration', require('./environments/setup.js')(env))
+
 // parse application/json
 app.use(bodyParser.json())
 
@@ -17,7 +21,7 @@ var routes = glob.sync('src/{dao,socket,routes}/**/*.js')
 
 function addToServer (path) {
   if (path.indexOf('socket') !== -1) {
-    require(path)(io)
+    require(path)(app, io)
   } else {
     require(path)(app)
   }

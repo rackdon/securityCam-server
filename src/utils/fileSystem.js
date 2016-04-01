@@ -4,8 +4,10 @@ var chokidar = require('chokidar')
 var functions = {}
 
 functions.watch = function (cb, path) {
-  var dir = path || '/home/pi/motion/captures/'
+  var dir = path || global.envionment.watchFolder
+
   var watcher = chokidar.watch(dir)
+  console.log('Watching at ', dir)
 
   watcher
     .on('add', function (path, stats) {
