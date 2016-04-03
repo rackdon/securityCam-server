@@ -8,6 +8,7 @@ module.exports = function setup (app, io) {
   })
 
   fileSystem.watch(function (path) {
+    console.log('New File: ' + path)
     io.sockets.emit('Motion detected', path)
   }, watchFolder)
 }
