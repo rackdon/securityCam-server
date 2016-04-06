@@ -54,7 +54,15 @@ module.exports = function (grunt) {
         },
         src: ['test/unit/test-suite.js', 'test/integration/test-suite.js']
       }
-},
+    },
+
+    versioncheck: {
+      target : {
+        options: {
+          hideUpToDate: true
+        }
+      }
+    }
   })
 
   grunt.registerTask('format', [
@@ -63,6 +71,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'format',
+    'versioncheck',
     'mochaTest:test'
   ])
 
