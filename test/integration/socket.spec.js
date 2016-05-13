@@ -47,7 +47,7 @@ describe('In socket.js', function () {
 
   it('a motion detected event is emited when a valid file is added in the observed folder', function (done) {
     var filePath
-    var fileName1 = 'simple-motion.png'
+    var fileName = '1234-motion.png'
 
     var spyFunc = sinon.spy(function (path) {
       filePath = path
@@ -56,7 +56,7 @@ describe('In socket.js', function () {
     client = io.connect(socketURL, options)
     client.on('Motion detected', spyFunc)
 
-    fs.writeFile(testFolder + fileName1)
+    fs.writeFile(testFolder + fileName)
 
     utils.retry(function () {
       if (filePath) {
@@ -70,13 +70,13 @@ describe('In socket.js', function () {
         expect(spyFunc.callCount).to.be.equal(1)
         expect(spyFunc.calledWith(filePath)).to.be.equal(true)
 
-        return picturesDao.getPicture({date: filePath.split('-')[0]})
+        return picturesDao.getPicture({date: fileName.split('-')[0]})
           .should.be.eventually.fulfilled
       })
       .then(function (picture) {
         expect(picture).to.have.property('name', filePath)
         expect(picture).to.have.property('type', 'motion')
-        expect(picture).to.have.property('date', filePath.split('-')[0])
+        expect(picture).to.have.property('date', fileName.split('-')[0])
       })
       .should.notify(done)
   })
