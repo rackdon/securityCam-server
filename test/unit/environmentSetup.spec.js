@@ -1,4 +1,4 @@
-var environmentSetup = require('../../src/environments/setup.js')
+var environmentSetup = require('../../src/environments/setup')
 
 describe('In environments setup.js', function () {
   it('configuration variables are returned in production environment', function () {

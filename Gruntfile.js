@@ -16,6 +16,9 @@ module.exports = function (grunt) {
         },
         runMotion: {
           command: 'motion'
+        },
+        runCoverage: {
+          command: 'npm run coverage'
         }
     },
 
@@ -46,13 +49,29 @@ module.exports = function (grunt) {
     },
 
     mochaTest: {
-      test: {
+      unit: {
         options: {
           reporter: 'spec',
           timeout: 5000,
           require: 'test/helpers/globals.js'
         },
-        src: ['test/unit/test-suite.js', 'test/integration/test-suite.js']
+        src: ['test/unit/**/*.spec.js']
+      },
+      integration: {
+        options: {
+          reporter: 'spec',
+          timeout: 5000,
+          require: 'test/helpers/globals.js'
+        },
+        src: ['test/integration/**/*.spec.js']
+      },
+      all: {
+        options: {
+          reporter: 'spec',
+          timeout: 5000,
+          require: 'test/helpers/globals.js'
+        },
+        src: ['test/**/*.spec.js']
       }
     },
 
@@ -71,11 +90,22 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'format',
-    'versioncheck',
-    'mochaTest:test'
+    'mochaTest:all'
+  ])
+
+  grunt.registerTask('test:unit', [
+    'mochaTest:unit',
+  ])
+
+  grunt.registerTask('test:integration', [
+    'mochaTest:integration',
   ])
 
   grunt.registerTask('start', [
     'concurrent:target1'
+  ])
+
+  grunt.registerTask('coverage', [
+    'shell:runCoverage'
   ])
 }

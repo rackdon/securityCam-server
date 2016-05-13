@@ -3,10 +3,13 @@ var chokidar = require('chokidar')
 
 var functions = {}
 
-functions.watch = function (cb, path) {
-  var dir = path || global.envionment.watchFolder
+functions.watch = function (path, cb) {
+  var dir = path || '/'
+  var opts = {
+    ignoreInitial: true
+  }
 
-  var watcher = chokidar.watch(dir)
+  var watcher = chokidar.watch(dir, opts)
   console.log('Watching at ', dir)
 
   watcher

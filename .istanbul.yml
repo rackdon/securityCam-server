@@ -1,3 +1,7 @@
+instrumentation:
+  excludes: [
+    'Gruntfile.js'
+  ]
 reporting:
   print: summary
   reports:
