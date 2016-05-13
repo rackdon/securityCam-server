@@ -16,7 +16,8 @@
     "url": "https://github.com/rackdon/securityCam-server/issues"
   },
   "engines": {
-    "node": "~4.2.1"
+    "node": "~5.4.1",
+    "npm": "~3.3.12"
   },
   "standard": {
     "globals": [
