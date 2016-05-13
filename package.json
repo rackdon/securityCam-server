@@ -35,7 +35,7 @@
   "scripts": {
     "installScript": "./config/installation.sh",
     "coverage": "istanbul --include-all-sources cover node_modules/.bin/_mocha -- -R spec test/{unit,helpers}/**/*.js",
-    "test": "grunt test",
+    "test": "grunt test:unit",
     "clean": "rm -rf node_modules",
     "update": "updtr",
     "start": "grunt start"

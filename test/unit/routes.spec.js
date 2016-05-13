@@ -64,7 +64,7 @@ describe('In routes pictures.js', function () {
       .then(function (response) {
         expect(response).to.have.deep.property('error.text', 'ErrorMessage')
       })
-    .should.notify(done)
+      .should.notify(done)
   })
 
   it('GET /pictures/picture returns a picture', function (done) {
@@ -80,21 +80,21 @@ describe('In routes pictures.js', function () {
           date: '9999'
         }
       })
-    
+
     fs.readFile('./test/testImages/9999-motion.png')
       .should.be.eventually.fulfilled
-      .then(function(data) {
+      .then(function (data) {
         imageData = data
 
         return request(serverTest).get('/pictures/picture?name=9999')
           .expect(200)
           .should.be.eventually.fulfilled
       })
-          .then(function (response) {
-            expect(response).to.have.property('body')
-            expect(response.body).to.be.deep.equal(imageData)
+      .then(function (response) {
+        expect(response).to.have.property('body')
+        expect(response.body).to.be.deep.equal(imageData)
       })
-    .should.notify(done)
+      .should.notify(done)
   })
 
   it('GET /pictures/picture returns an error', function (done) {
@@ -109,7 +109,7 @@ describe('In routes pictures.js', function () {
       .then(function (response) {
         expect(response).to.have.deep.property('error.text', 'ErrorMessage')
       })
-    .should.notify(done)
+      .should.notify(done)
   })
 
   it('DELETE /pictures returns status 200', function (done) {
@@ -127,7 +127,7 @@ describe('In routes pictures.js', function () {
       .then(function () {
         deleteFilesMock.verify()
       })
-    .should.notify(done)
+      .should.notify(done)
   })
 
   it('DELETE /pictures returns an error', function (done) {
@@ -146,6 +146,6 @@ describe('In routes pictures.js', function () {
         expect(response).to.have.deep.property('error.text', 'ErrorMessage')
         deleteFilesMock.verify()
       })
-    .should.notify(done)
+      .should.notify(done)
   })
 })
