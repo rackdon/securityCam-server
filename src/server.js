@@ -3,6 +3,7 @@ var http = require('http').Server(app)
 var io = require('socket.io')(http)
 var bodyParser = require('body-parser')
 var glob = require('glob')
+var log = require('./log/log').getLog('SERVER')
 
 // Set Environment variables
 var env = process.env.NODE_ENV || 'development'
@@ -25,7 +26,7 @@ function addToServer (path) {
   } else {
     require(path)(app)
   }
-  console.log(path + ' added to express')
+  log.info(path + ' added to express')
 }
 
 routes.forEach(function (route) {
@@ -34,7 +35,7 @@ routes.forEach(function (route) {
 })
 
 http.listen(8082, function () {
-  console.log('Node server running on http://localhost:8082')
+  log.info('Node server running on http://localhost:8082')
 })
 
 module.exports = app

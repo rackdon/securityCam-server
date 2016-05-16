@@ -1,5 +1,6 @@
 var fs = require('mz/fs')
 var chokidar = require('chokidar')
+var log = require('../log/log').getLog('WATCHER')
 
 var functions = {}
 
@@ -10,7 +11,7 @@ functions.watch = function (path, cb) {
   }
 
   var watcher = chokidar.watch(dir, opts)
-  console.log('Watching at ', dir)
+  log.info('Watching at ', dir)
 
   watcher
     .on('add', function (path, stats) {

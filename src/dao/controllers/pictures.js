@@ -1,17 +1,18 @@
 var Pictures = require('../models/pictures')
+var log = require('../../log/log').getLog('MONGO')
 
 exports.getPictures = function (query) {
   return Pictures.find(getFormedQuery(query))
     .select({name: 1, type: 1, date: 1, _id: 0})
     .exec()
     .then(function (pictures) {
-      console.log('GET /pictures')
+      log.info('GET /pictures')
       return pictures.map(function (picture) {
         return picture._doc
       })
     })
     .catch(function (err) {
-      console.log('ERR: ', err.message)
+      log.error('ERR: ', err.message)
       throw err
     })
 }
@@ -21,11 +22,11 @@ exports.getPicture = function (query) {
     .select({name: 1, type: 1, date: 1, _id: 0})
     .exec()
     .then(function (picture) {
-      console.log('GET /pictures/picture?' + JSON.stringify(query))
+      log.info('GET /pictures/picture?' + JSON.stringify(query))
       return picture ? picture._doc : null
     })
     .catch(function (err) {
-      console.log('ERR: ', err.message)
+      log.error('ERR: ', err.message)
       throw err
     })
 }
@@ -33,11 +34,11 @@ exports.getPicture = function (query) {
 exports.addPicture = function (data) {
   return Pictures.create(data)
     .then(function (picture) {
-      console.log('POST ', picture)
+      log.info('POST ', picture)
       return picture
     })
     .catch(function (err) {
-      console.log('ERR: ', err.message)
+      log.warn('ERR: ', err.message)
       return err
     })
 }
@@ -45,10 +46,10 @@ exports.addPicture = function (data) {
 exports.deleteAll = function () {
   return Pictures.remove()
     .then(function () {
-      console.log('DELETE /pictures')
+      log.info('DELETE /pictures')
     })
     .catch(function (err) {
-      console.log('ERR: ', err.message)
+      log.error('ERR: ', err.message)
       throw err
     })
 }
