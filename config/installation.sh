@@ -1,5 +1,4 @@
 sudo apt-get update
-sudo apt-get -y install nodejs-dev
 sudo apt-get -y install motion
 sudo apt-get -y install mongodb-server
 sudo mkdir -p /data/db
