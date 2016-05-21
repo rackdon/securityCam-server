@@ -34,6 +34,7 @@ Node 5.4.1 or later is needed. You can install it following the next steps
 
   ```
   sudo apt-get install -y nodejs
+  sudo apt-get install -y npm
   sudo npm cache clean -f
   sudo npm install -g n
   sudo n 5.4.1
