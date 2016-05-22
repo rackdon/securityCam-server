@@ -67,8 +67,17 @@ describe('In dao', function () {
         .should.notify(done)
     })
 
+    it('non existent field are not ignored in the query', function (done) {
+      controller.getPicture({name: data2.name, nonExistent: 500})
+        .should.be.eventually.fulfilled
+        .then(function (response) {
+          expect(response).to.be.equal(null)
+        })
+        .should.notify(done)
+    })
+
     it('a picture can be gotten through his date', function (done) {
-      controller.getPicture({date: data2.date - 10})
+      controller.getPicture({date: {$gte: data2.date - 10}})
         .should.be.eventually.fulfilled
         .then(function (response) {
           expect(response).to.be.deep.equal(data2)
@@ -77,7 +86,7 @@ describe('In dao', function () {
     })
 
     it('a picture can be gotten through his date and his type', function (done) {
-      controller.getPicture({date: data2.date - 10, type: 'periodic'})
+      controller.getPicture({date: {$gte: data2.date - 10}, type: 'periodic'})
         .should.be.eventually.fulfilled
         .then(function (response) {
           expect(response).to.be.deep.equal(data2)
@@ -87,6 +96,15 @@ describe('In dao', function () {
 
     it('no data are received if the documment does not exists', function (done) {
       controller.getPicture({name: 'nonExistent'})
+        .should.be.eventually.fulfilled
+        .then(function (response) {
+          expect(response).to.be.equal(null)
+        })
+        .should.notify(done)
+    })
+
+    it('no data are received if the query field does not exists', function (done) {
+      controller.getPicture({minDate: 'nonExistent'})
         .should.be.eventually.fulfilled
         .then(function (response) {
           expect(response).to.be.equal(null)

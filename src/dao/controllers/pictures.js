@@ -2,7 +2,7 @@ var Pictures = require('../models/pictures')
 var log = require('../../log/log').getLog('MONGO')
 
 exports.getPictures = function (query) {
-  return Pictures.find(getFormedQuery(query))
+  return Pictures.find(query)
     .select({name: 1, type: 1, date: 1, _id: 0})
     .exec()
     .then(function (pictures) {
@@ -18,7 +18,7 @@ exports.getPictures = function (query) {
 }
 
 exports.getPicture = function (query) {
-  return Pictures.findOne(getFormedQuery(query))
+  return Pictures.findOne(query)
     .select({name: 1, type: 1, date: 1, _id: 0})
     .exec()
     .then(function (picture) {
@@ -52,14 +52,4 @@ exports.deleteAll = function () {
       log.error('ERR: ', err.message)
       throw err
     })
-}
-
-function getFormedQuery (query) {
-  var formedQuery = {}
-
-  for (var key in query) {
-    formedQuery[key] = key === 'date'
-      ? {$gte: query[key]} : query[key]
-  }
-  return formedQuery
 }

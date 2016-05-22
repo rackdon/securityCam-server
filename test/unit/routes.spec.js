@@ -69,9 +69,15 @@ describe('In routes pictures.js', function () {
 
   it('GET /pictures/picture returns a picture', function (done) {
     var imageData
+    var query = {
+      date: {
+        $gte: '9999'
+      }
+    }
 
     modelMock
       .expects('findOne')
+      .withExactArgs(query)
       .chain('exec')
       .resolves({
         _doc: {
@@ -86,7 +92,7 @@ describe('In routes pictures.js', function () {
       .then(function (data) {
         imageData = data
 
-        return request(serverTest).get('/pictures/picture?name=9999')
+        return request(serverTest).get('/pictures/picture?minDate=9999')
           .expect(200)
           .should.be.eventually.fulfilled
       })
