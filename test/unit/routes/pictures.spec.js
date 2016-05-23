@@ -1,6 +1,6 @@
 var fs = require('mz/fs')
-var model = require('../../src/dao/models/pictures')
-var fileSystem = require('../../src/utils/fileSystem')
+var model = require('../../../src/dao/models/pictures')
+var fileSystem = require('../../../src/utils/fileSystem')
 var modelMock
 
 describe('In routes pictures.js', function () {
@@ -99,6 +99,21 @@ describe('In routes pictures.js', function () {
       .then(function (response) {
         expect(response).to.have.property('body')
         expect(response.body).to.be.deep.equal(imageData)
+      })
+      .should.notify(done)
+  })
+
+  it('GET /pictures/picture returns empty body if there is no picture', function (done) {
+    modelMock
+      .expects('findOne')
+      .chain('exec')
+      .resolves({})
+
+    request(serverTest).get('/pictures/picture?name=nonExistent')
+      .expect(200)
+      .should.be.eventually.fulfilled
+      .then(function (response) {
+        expect(response).to.have.property('body').and.to.be.deep.equal({})
       })
       .should.notify(done)
   })
