@@ -21,7 +21,9 @@ module.exports = function setup (app, io) {
       date: snapshotDate
     })
       .then(function () {
-        io.sockets.emit('Motion detected', path)
+        if (snapshotType === 'motion') {
+          io.sockets.emit('Motion detected', path)
+        }
       })
       .catch(function (err) {
         io.sockets.emit('Invalid picture', err.message)

@@ -81,38 +81,6 @@ describe('In socket.js', function () {
       .should.notify(done)
   })
 
-  it('two motion detected events are emited when two valid files are added in the observed folder', function (done) {
-    var fileName1 = '1234-snapshot.png'
-    var fileName2 = '4321-motion.png'
-
-    var spyFunc = sinon.spy(function () {})
-
-    client = io.connect(socketURL, options)
-    client.on('Motion detected', spyFunc)
-
-    fs.writeFile(testFolder + fileName1)
-    fs.writeFile(testFolder + fileName2)
-
-    utils.retry(function () {
-      if (spyFunc.callCount === 2) {
-        return Promise.resolve()
-      } else {
-        return Promise.reject()
-      }
-    }, maxRetries, maxWait)
-      .should.be.eventually.fulfilled
-      .then(function () {
-        expect(spyFunc.callCount).to.be.equal(2)
-
-        return picturesDao.getPictures({})
-          .should.be.eventually.fulfilled
-      })
-      .then(function (pictures) {
-        expect(pictures.length).to.be.equal(2)
-      })
-      .should.notify(done)
-  })
-
   it('an invalid picture event is emited if the file added in the folder has not a valid name', function (done) {
     var invalidFileName = 'socket-invalid.png'
     var errorMessage
