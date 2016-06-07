@@ -1,4 +1,4 @@
 module.exports = {
-  watchFolder: 'home/pi/motion/captures/',
+  watchFolder: '/home/motion/pictures/',
   db: 'mongodb://localhost/pictures'
 }
