@@ -8,6 +8,13 @@ module.exports = function setup (app, io) {
 
   io.on('connection', function (socket) {
     log.info('A user connected')
+    socket.on('disconnect', function () {
+      log.info('A user disconnected')
+    })
+  })
+
+  io.on('disconnected', function () {
+    log.info('A user disconnected')
   })
 
   fileSystem.watch(watchFolder, function (path) {
