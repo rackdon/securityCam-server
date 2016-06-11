@@ -30,10 +30,12 @@ module.exports = function setup (app, io) {
       .then(function () {
         if (snapshotType === 'motion') {
           io.sockets.emit('Motion detected', path)
+          log.info('Motion event emmited')
         }
       })
       .catch(function (err) {
         io.sockets.emit('Invalid picture', err.message)
+        log.info('Invalid picture event emmited')
       })
   })
 }
