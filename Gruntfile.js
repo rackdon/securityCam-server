@@ -24,7 +24,7 @@ module.exports = function (grunt) {
 
     concurrent: {
         target1: {
-            tasks: ['shell:runMongoDBserver', 'shell:runNodeserver', 'shell:runMotion'],
+            tasks: ['shell:runNodeserver', 'shell:runMotion'],
             options: {
                 limit: 3,
                 logConcurrentOutput: true

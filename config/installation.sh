@@ -9,5 +9,5 @@ sudo mkdir /home/motion/
 sudo chmod 777 /home/motion/
 sudo apt-get -y autoremove
 sudo npm install -g grunt
+mkdir ./test/testFiles
 npm install
-mongod --shutdown
